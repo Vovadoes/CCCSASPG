@@ -197,20 +197,21 @@ class Finish(QtWidgets.QDialog):
             data = self.parent.table_loader1.data
             lst.append([
                 data[i][0], round(data[i][1], 4), round(data[i][2]),
-                round(self.parent.calculation.lst_S[i])
+                round(self.parent.calculation.lst_S[i], 3),
+                round(self.parent.calculation.lst_S_gost[i])
             ])
         print(f"{lst=}")
 
         filter_table_results_1 = lambda dct: dct['value']
 
-        loader_results_1_n = 4
+        loader_results_1_n = 5
         loader_results_1_m = self.parent.variables.m
         loader_results_1_data = lst
-        types_matrix_results_1 = [[str, float, int, float] for _ in range(loader_results_1_m)]
+        types_matrix_results_1 = [[str, float, int, float, float] for _ in range(loader_results_1_m)]
         loader_results_1_block = True
         loader_results_1_heading_x = lambda iterator: \
             ["Наименование участков", "Количество домов на участке", "Длина участка, м",
-             "Сечение кабеля"][iterator]
+             "Сечение теплопроводящей жилы", "Сечение кабеля"][iterator]
         loader_results_1_heading_y = lambda iterator: str(iterator)
         self.table_loader_results_1 = TableLoader(
             self.parent, loader_results_1_n, loader_results_1_m, data=loader_results_1_data,

@@ -40,13 +40,16 @@ class Calculation:
             lst_R.append(dU / lst_I[i])
         print(f"{lst_R=}")
 
-        lst_S = []
+        self.lst_S = []
         for i in range(m):
-            lst_S.append(q * lst[i][2] / lst_R[i])
-        print(f"{lst_S=}")
-
-        self.lst_S = [myround(lst_S[i], [35, 50, 70, 95, 120, 150, 185, 240]) for i in range(len(lst_S))]
+            self.lst_S.append(q * lst[i][2] / lst_R[i])
         print(f"{self.lst_S=}")
+
+        self.lst_S_gost = [
+            myround(self.lst_S[i], [35, 50, 70, 95, 120, 150, 185, 240])
+            for i in range(len(self.lst_S))
+        ]
+        print(f"{self.lst_S_gost=}")
 
 
 if __name__ == "__main__":
